@@ -26,7 +26,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.Unicode(50), nullable=False, server_default=u'')
     last_name = db.Column(db.Unicode(50), nullable=False, server_default=u'')
     gender = db.Column(db.Unicode(50), nullable=False, server_default=u'')
-    languages = db.Column(db.Unicode(500), nullable=False, server_default=u'')
+    #languages = db.Column(db.Unicode(500), nullable=False, server_default=u'')
 
     # Relationships
     roles = db.relationship('Role', secondary='users_roles',
