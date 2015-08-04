@@ -25,6 +25,8 @@ class User(db.Model, UserMixin):
     active = db.Column('is_active', db.Boolean(), nullable=False, server_default='0')
     first_name = db.Column(db.Unicode(50), nullable=False, server_default=u'')
     last_name = db.Column(db.Unicode(50), nullable=False, server_default=u'')
+    gender = db.Column(db.Unicode(50), nullable=False, server_default=u'')
+    languages = db.Column(db.Unicode(500), nullable=False, server_default=u'')
 
     # Relationships
     roles = db.relationship('Role', secondary='users_roles',
@@ -50,10 +52,14 @@ class UsersRoles(db.Model):
 # Define the User registration form
 # It augments the Flask-User RegisterForm with additional fields
 class MyRegisterForm(RegisterForm):
+
     first_name = StringField('First name', validators=[
         validators.DataRequired('First name is required')])
     last_name = StringField('Last name', validators=[
         validators.DataRequired('Last name is required')])
+    gender = RadioField('Gender', choices=[('male','male'),('female','female')], validators=[
+        validators.DataRequired('Gender is required')])
+    languages = SelectMultipleField('Programming Languages', choices=[('cpp', 'C++'), ('py', 'Python'), ('php', 'PHP')])
 
 
 # Define the User profile form
