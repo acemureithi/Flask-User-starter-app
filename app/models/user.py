@@ -5,7 +5,7 @@
 from flask_user import UserMixin
 from flask_user.forms import RegisterForm
 from flask_wtf import Form
-from wtforms import StringField, SubmitField, validators
+from wtforms import StringField, SubmitField, validators, RadioField, SelectMultipleField
 from app import db
 
 
@@ -58,7 +58,7 @@ class MyRegisterForm(RegisterForm):
     last_name = StringField('Last name', validators=[
         validators.DataRequired('Last name is required')])
     gender = RadioField('Gender', choices=[('male','male'),('female','female')], validators=[
-        validators.DataRequired('Gender is required')])
+       validators.DataRequired('Gender is required')])
     languages = SelectMultipleField('Programming Languages', choices=[('cpp', 'C++'), ('py', 'Python'), ('php', 'PHP')])
 
 
